@@ -35,6 +35,7 @@ export type Database = {
           image_path: string | null
           model: string
           price_zar: number
+          slug: string
           sort_order: number
           updated_at: string
         }
@@ -46,6 +47,7 @@ export type Database = {
           image_path?: string | null
           model: string
           price_zar: number
+          slug: string
           sort_order?: number
           updated_at?: string
         }
@@ -57,6 +59,7 @@ export type Database = {
           image_path?: string | null
           model?: string
           price_zar?: number
+          slug?: string
           sort_order?: number
           updated_at?: string
         }
