@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BrandNewRouteImport } from './routes/brand-new'
+import { Route as PreOwnedRouteImport } from './routes/pre-owned'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ApiPublicProductImageIdRouteImport } from './routes/api/public/product-image/$id'
 
@@ -30,6 +32,16 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrandNewRoute = BrandNewRouteImport.update({
+  id: '/brand-new',
+  path: '/brand-new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PreOwnedRoute = PreOwnedRouteImport.update({
+  id: '/pre-owned',
+  path: '/pre-owned',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
@@ -45,6 +57,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/brand-new': typeof BrandNewRoute
+  '/pre-owned': typeof PreOwnedRoute
   '/reset-password': typeof ResetPasswordRoute
   '/api/public/product-image/$id': typeof ApiPublicProductImageIdRoute
 }
@@ -52,6 +66,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/brand-new': typeof BrandNewRoute
+  '/pre-owned': typeof PreOwnedRoute
   '/reset-password': typeof ResetPasswordRoute
   '/api/public/product-image/$id': typeof ApiPublicProductImageIdRoute
 }
@@ -60,6 +76,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/brand-new': typeof BrandNewRoute
+  '/pre-owned': typeof PreOwnedRoute
   '/reset-password': typeof ResetPasswordRoute
   '/api/public/product-image/$id': typeof ApiPublicProductImageIdRoute
 }
@@ -69,6 +87,8 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/auth'
+    | '/brand-new'
+    | '/pre-owned'
     | '/reset-password'
     | '/api/public/product-image/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -76,6 +96,8 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/auth'
+    | '/brand-new'
+    | '/pre-owned'
     | '/reset-password'
     | '/api/public/product-image/$id'
   id:
@@ -83,6 +105,8 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/auth'
+    | '/brand-new'
+    | '/pre-owned'
     | '/reset-password'
     | '/api/public/product-image/$id'
   fileRoutesById: FileRoutesById
@@ -91,6 +115,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
   AuthRoute: typeof AuthRoute
+  BrandNewRoute: typeof BrandNewRoute
+  PreOwnedRoute: typeof PreOwnedRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   ApiPublicProductImageIdRoute: typeof ApiPublicProductImageIdRoute
 }
@@ -118,6 +144,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brand-new': {
+      id: '/brand-new'
+      path: '/brand-new'
+      fullPath: '/brand-new'
+      preLoaderRoute: typeof BrandNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pre-owned': {
+      id: '/pre-owned'
+      path: '/pre-owned'
+      fullPath: '/pre-owned'
+      preLoaderRoute: typeof PreOwnedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reset-password': {
       id: '/reset-password'
       path: '/reset-password'
@@ -139,19 +179,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   AuthRoute: AuthRoute,
+  BrandNewRoute: BrandNewRoute,
+  PreOwnedRoute: PreOwnedRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   ApiPublicProductImageIdRoute: ApiPublicProductImageIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
