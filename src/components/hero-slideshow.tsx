@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { PHONE_IMAGES, whatsappLink } from "@/lib/phone-images";
+import { Link } from "@tanstack/react-router";
+import { CATALOG } from "@/lib/catalog";
+import { whatsappLink } from "@/lib/phone-images";
 
 const SLIDES = [
-  { key: "iphone-17", title: "iPhone 17 Pro Max", tag: "Just landed" },
-  { key: "iphone-16", title: "iPhone 16 Pro", tag: "Best seller" },
-  { key: "iphone-15", title: "iPhone 15 Pro", tag: "Titanium" },
-  { key: "iphone-13", title: "iPhone 13 Pro", tag: "Great value" },
-  { key: "iphone-11", title: "iPhone 11 Pro Max", tag: "Budget king" },
+  { key: "iPhone 17 Pro Max", title: "iPhone 17 Pro Max", tag: "Just landed" },
+  { key: "iPhone 16 Pro", title: "iPhone 16 Pro", tag: "Best seller" },
+  { key: "iPhone 15 Pro", title: "iPhone 15 Pro", tag: "Titanium" },
+  { key: "iPhone 13 Pro Max", title: "iPhone 13 Pro Max", tag: "Great value" },
+  { key: "iPhone 11 Pro Max", title: "iPhone 11 Pro Max", tag: "Budget king" },
 ];
 
 export function HeroSlideshow() {
@@ -39,18 +41,18 @@ export function HeroSlideshow() {
             iPhone 17 Pro Max. 100% original, delivered in 2–3 days.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#brand-new"
+            <Link
+              to="/brand-new"
               className="rounded-full bg-brand px-7 py-3 text-sm font-semibold text-primary-foreground shadow-float transition-transform hover:scale-[1.03]"
             >
               Shop brand new
-            </a>
-            <a
-              href="#pre-owned"
+            </Link>
+            <Link
+              to="/pre-owned"
               className="rounded-full border border-ink px-7 py-3 text-sm font-semibold text-ink transition-colors hover:bg-ink hover:text-background"
             >
               Shop pre-owned
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -59,11 +61,11 @@ export function HeroSlideshow() {
           {SLIDES.map((slide, index) => (
             <img
               key={slide.key}
-              src={PHONE_IMAGES[slide.key]}
+              src={CATALOG[slide.key]?.images[0]}
               alt={slide.title}
               width={800}
               height={800}
-              className={`absolute h-full w-auto max-w-full object-contain transition-all duration-700 ${
+              className={`absolute h-full w-auto max-w-full rounded-[2.5rem] object-cover transition-all duration-700 ${
                 index === active
                   ? "animate-float-phone opacity-100 scale-100"
                   : "pointer-events-none opacity-0 scale-90"

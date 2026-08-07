@@ -12,7 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BrandNewRouteImport } from './routes/brand-new'
+import { Route as CartRouteImport } from './routes/cart'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as PreOwnedRouteImport } from './routes/pre-owned'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as ProductSlugRouteImport } from './routes/product.$slug'
 import { Route as ApiPublicProductImageIdRouteImport } from './routes/api/public/product-image/$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -30,9 +36,39 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrandNewRoute = BrandNewRouteImport.update({
+  id: '/brand-new',
+  path: '/brand-new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PreOwnedRoute = PreOwnedRouteImport.update({
+  id: '/pre-owned',
+  path: '/pre-owned',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductSlugRoute = ProductSlugRouteImport.update({
+  id: '/product/$slug',
+  path: '/product/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicProductImageIdRoute = ApiPublicProductImageIdRouteImport.update({
@@ -45,14 +81,26 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/brand-new': typeof BrandNewRoute
+  '/cart': typeof CartRoute
+  '/contact': typeof ContactRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/pre-owned': typeof PreOwnedRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/product/$slug': typeof ProductSlugRoute
   '/api/public/product-image/$id': typeof ApiPublicProductImageIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/brand-new': typeof BrandNewRoute
+  '/cart': typeof CartRoute
+  '/contact': typeof ContactRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/pre-owned': typeof PreOwnedRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/product/$slug': typeof ProductSlugRoute
   '/api/public/product-image/$id': typeof ApiPublicProductImageIdRoute
 }
 export interface FileRoutesById {
@@ -60,7 +108,13 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/brand-new': typeof BrandNewRoute
+  '/cart': typeof CartRoute
+  '/contact': typeof ContactRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/pre-owned': typeof PreOwnedRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/product/$slug': typeof ProductSlugRoute
   '/api/public/product-image/$id': typeof ApiPublicProductImageIdRoute
 }
 export interface FileRouteTypes {
@@ -69,21 +123,39 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/auth'
+    | '/brand-new'
+    | '/cart'
+    | '/contact'
+    | '/how-it-works'
+    | '/pre-owned'
     | '/reset-password'
+    | '/product/$slug'
     | '/api/public/product-image/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/admin'
     | '/auth'
+    | '/brand-new'
+    | '/cart'
+    | '/contact'
+    | '/how-it-works'
+    | '/pre-owned'
     | '/reset-password'
+    | '/product/$slug'
     | '/api/public/product-image/$id'
   id:
     | '__root__'
     | '/'
     | '/admin'
     | '/auth'
+    | '/brand-new'
+    | '/cart'
+    | '/contact'
+    | '/how-it-works'
+    | '/pre-owned'
     | '/reset-password'
+    | '/product/$slug'
     | '/api/public/product-image/$id'
   fileRoutesById: FileRoutesById
 }
@@ -91,7 +163,13 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
   AuthRoute: typeof AuthRoute
+  BrandNewRoute: typeof BrandNewRoute
+  CartRoute: typeof CartRoute
+  ContactRoute: typeof ContactRoute
+  HowItWorksRoute: typeof HowItWorksRoute
+  PreOwnedRoute: typeof PreOwnedRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  ProductSlugRoute: typeof ProductSlugRoute
   ApiPublicProductImageIdRoute: typeof ApiPublicProductImageIdRoute
 }
 
@@ -118,11 +196,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brand-new': {
+      id: '/brand-new'
+      path: '/brand-new'
+      fullPath: '/brand-new'
+      preLoaderRoute: typeof BrandNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pre-owned': {
+      id: '/pre-owned'
+      path: '/pre-owned'
+      fullPath: '/pre-owned'
+      preLoaderRoute: typeof PreOwnedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reset-password': {
       id: '/reset-password'
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/product/$slug': {
+      id: '/product/$slug'
+      path: '/product/$slug'
+      fullPath: '/product/$slug'
+      preLoaderRoute: typeof ProductSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/product-image/$id': {
@@ -139,7 +259,13 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   AuthRoute: AuthRoute,
+  BrandNewRoute: BrandNewRoute,
+  CartRoute: CartRoute,
+  ContactRoute: ContactRoute,
+  HowItWorksRoute: HowItWorksRoute,
+  PreOwnedRoute: PreOwnedRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  ProductSlugRoute: ProductSlugRoute,
   ApiPublicProductImageIdRoute: ApiPublicProductImageIdRoute,
 }
 export const routeTree = rootRouteImport

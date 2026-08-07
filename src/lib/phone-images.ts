@@ -1,29 +1,10 @@
-import iphoneX from "@/assets/phones/iphone-x.jpg";
-import iphoneXr from "@/assets/phones/iphone-xr.jpg";
-import iphone11 from "@/assets/phones/iphone-11.jpg";
-import iphone12 from "@/assets/phones/iphone-12.jpg";
-import iphone13 from "@/assets/phones/iphone-13.jpg";
-import iphone14 from "@/assets/phones/iphone-14.jpg";
-import iphone15 from "@/assets/phones/iphone-15.jpg";
-import iphone16 from "@/assets/phones/iphone-16.jpg";
-import iphone17 from "@/assets/phones/iphone-17.jpg";
+import { CATALOG, type ColorOption } from "@/lib/catalog";
 
-export const PHONE_IMAGES: Record<string, string> = {
-  "iphone-x": iphoneX,
-  "iphone-xr": iphoneXr,
-  "iphone-11": iphone11,
-  "iphone-12": iphone12,
-  "iphone-13": iphone13,
-  "iphone-14": iphone14,
-  "iphone-15": iphone15,
-  "iphone-16": iphone16,
-  "iphone-17": iphone17,
-};
-
-export const PHONE_IMAGE_KEYS = Object.keys(PHONE_IMAGES);
+export type { ColorOption };
 
 export type Product = {
   id: string;
+  slug: string;
   model: string;
   condition: "new" | "preowned";
   price_zar: number;
@@ -33,11 +14,43 @@ export type Product = {
   updated_at: string;
 };
 
-export function productImage(product: Product): string {
+export function catalogEntry(model: string) {
+  return (
+    CATALOG[model] ?? {
+      images: [],
+      colors: [{ name: "Black", hex: "#1c1c1e" }],
+      storage: ["128GB"],
+      description: `${model} — 100% original, tested and ready to ship nationwide.`,
+    }
+  );
+}
+
+const PLACEHOLDER =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E";
+
+/** Gallery of photos for a product: admin upload first (if any), then catalog photos. */
+export function productImages(product: Product): string[] {
+  const shots = catalogEntry(product.model).images;
   if (product.image_path) {
-    return `/api/public/product-image/${product.id}?v=${encodeURIComponent(product.updated_at)}`;
+    return [
+      `/api/public/product-image/${product.id}?v=${encodeURIComponent(product.updated_at)}`,
+      ...shots,
+    ];
   }
-  return PHONE_IMAGES[product.image_key] ?? PHONE_IMAGES["iphone-x"]!;
+  return shots.length ? shots : [PLACEHOLDER];
+}
+
+export function productImage(product: Product): string {
+  return productImages(product)[0] ?? PLACEHOLDER;
+}
+
+/** Storage tiers with the price for each, derived from the base price. */
+export function storageTiers(product: Product) {
+  const step = product.condition === "new" ? 800 : 200;
+  return catalogEntry(product.model).storage.map((label, i) => ({
+    label,
+    price: product.price_zar + i * step,
+  }));
 }
 
 export const WHATSAPP_NUMBER = "27618372308";
@@ -48,4 +61,8 @@ export function whatsappLink(message: string) {
 
 export function formatRand(value: number) {
   return `R ${value.toLocaleString("en-ZA")}`;
+}
+
+export function conditionLabel(condition: Product["condition"]) {
+  return condition === "new" ? "Brand New" : "Pre-Owned";
 }
