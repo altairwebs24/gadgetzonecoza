@@ -4,12 +4,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
-import {
-  PHONE_IMAGE_KEYS,
-  formatRand,
-  productImage,
-  type Product,
-} from "@/lib/phone-images";
+import { formatRand, productImage, type Product } from "@/lib/phone-images";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -206,21 +201,15 @@ function AdminRow({ product, onChange }: { product: Product; onChange: () => voi
           Save
         </button>
       </div>
-      <select
-        aria-label={`Stock photo for ${product.model}`}
-        value={product.image_path ? "" : product.image_key}
-        onChange={(e) => setImageKey(e.target.value)}
-        className="h-10 rounded-xl border border-border bg-secondary px-3 text-sm"
-      >
-        <option value="" disabled>
-          {product.image_path ? "Custom upload" : "Stock photo"}
-        </option>
-        {PHONE_IMAGE_KEYS.map((key) => (
-          <option key={key} value={key}>
-            {key}
-          </option>
-        ))}
-      </select>
+      {product.image_path && (
+        <button
+          onClick={() => setImageKey(product.image_key)}
+          disabled={busy}
+          className="h-10 rounded-xl border border-border px-4 text-sm font-semibold"
+        >
+          Use default photo
+        </button>
+      )}
       <label className="h-10 cursor-pointer rounded-xl border border-border px-4 text-sm font-semibold leading-10">
         Upload photo
         <input
