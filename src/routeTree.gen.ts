@@ -14,6 +14,8 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BrandNewRouteImport } from './routes/brand-new'
 import { Route as CartRouteImport } from './routes/cart'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as PreOwnedRouteImport } from './routes/pre-owned'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
@@ -44,6 +46,16 @@ const CartRoute = CartRouteImport.update({
   path: '/cart',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PreOwnedRoute = PreOwnedRouteImport.update({
   id: '/pre-owned',
   path: '/pre-owned',
@@ -71,6 +83,8 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/brand-new': typeof BrandNewRoute
   '/cart': typeof CartRoute
+  '/contact': typeof ContactRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/pre-owned': typeof PreOwnedRoute
   '/reset-password': typeof ResetPasswordRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -82,6 +96,8 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/brand-new': typeof BrandNewRoute
   '/cart': typeof CartRoute
+  '/contact': typeof ContactRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/pre-owned': typeof PreOwnedRoute
   '/reset-password': typeof ResetPasswordRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -94,6 +110,8 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/brand-new': typeof BrandNewRoute
   '/cart': typeof CartRoute
+  '/contact': typeof ContactRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/pre-owned': typeof PreOwnedRoute
   '/reset-password': typeof ResetPasswordRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -107,6 +125,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/brand-new'
     | '/cart'
+    | '/contact'
+    | '/how-it-works'
     | '/pre-owned'
     | '/reset-password'
     | '/product/$slug'
@@ -118,6 +138,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/brand-new'
     | '/cart'
+    | '/contact'
+    | '/how-it-works'
     | '/pre-owned'
     | '/reset-password'
     | '/product/$slug'
@@ -129,6 +151,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/brand-new'
     | '/cart'
+    | '/contact'
+    | '/how-it-works'
     | '/pre-owned'
     | '/reset-password'
     | '/product/$slug'
@@ -141,6 +165,8 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   BrandNewRoute: typeof BrandNewRoute
   CartRoute: typeof CartRoute
+  ContactRoute: typeof ContactRoute
+  HowItWorksRoute: typeof HowItWorksRoute
   PreOwnedRoute: typeof PreOwnedRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   ProductSlugRoute: typeof ProductSlugRoute
@@ -184,6 +210,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CartRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pre-owned': {
       id: '/pre-owned'
       path: '/pre-owned'
@@ -221,6 +261,8 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   BrandNewRoute: BrandNewRoute,
   CartRoute: CartRoute,
+  ContactRoute: ContactRoute,
+  HowItWorksRoute: HowItWorksRoute,
   PreOwnedRoute: PreOwnedRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   ProductSlugRoute: ProductSlugRoute,
