@@ -13,8 +13,10 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BrandNewRouteImport } from './routes/brand-new'
+import { Route as CartRouteImport } from './routes/cart'
 import { Route as PreOwnedRouteImport } from './routes/pre-owned'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as ProductSlugRouteImport } from './routes/product.$slug'
 import { Route as ApiPublicProductImageIdRouteImport } from './routes/api/public/product-image/$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -37,6 +39,11 @@ const BrandNewRoute = BrandNewRouteImport.update({
   path: '/brand-new',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PreOwnedRoute = PreOwnedRouteImport.update({
   id: '/pre-owned',
   path: '/pre-owned',
@@ -45,6 +52,11 @@ const PreOwnedRoute = PreOwnedRouteImport.update({
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductSlugRoute = ProductSlugRouteImport.update({
+  id: '/product/$slug',
+  path: '/product/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicProductImageIdRoute = ApiPublicProductImageIdRouteImport.update({
@@ -58,8 +70,10 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/brand-new': typeof BrandNewRoute
+  '/cart': typeof CartRoute
   '/pre-owned': typeof PreOwnedRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/product/$slug': typeof ProductSlugRoute
   '/api/public/product-image/$id': typeof ApiPublicProductImageIdRoute
 }
 export interface FileRoutesByTo {
@@ -67,8 +81,10 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/brand-new': typeof BrandNewRoute
+  '/cart': typeof CartRoute
   '/pre-owned': typeof PreOwnedRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/product/$slug': typeof ProductSlugRoute
   '/api/public/product-image/$id': typeof ApiPublicProductImageIdRoute
 }
 export interface FileRoutesById {
@@ -77,8 +93,10 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/brand-new': typeof BrandNewRoute
+  '/cart': typeof CartRoute
   '/pre-owned': typeof PreOwnedRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/product/$slug': typeof ProductSlugRoute
   '/api/public/product-image/$id': typeof ApiPublicProductImageIdRoute
 }
 export interface FileRouteTypes {
@@ -88,8 +106,10 @@ export interface FileRouteTypes {
     | '/admin'
     | '/auth'
     | '/brand-new'
+    | '/cart'
     | '/pre-owned'
     | '/reset-password'
+    | '/product/$slug'
     | '/api/public/product-image/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -97,8 +117,10 @@ export interface FileRouteTypes {
     | '/admin'
     | '/auth'
     | '/brand-new'
+    | '/cart'
     | '/pre-owned'
     | '/reset-password'
+    | '/product/$slug'
     | '/api/public/product-image/$id'
   id:
     | '__root__'
@@ -106,8 +128,10 @@ export interface FileRouteTypes {
     | '/admin'
     | '/auth'
     | '/brand-new'
+    | '/cart'
     | '/pre-owned'
     | '/reset-password'
+    | '/product/$slug'
     | '/api/public/product-image/$id'
   fileRoutesById: FileRoutesById
 }
@@ -116,8 +140,10 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   AuthRoute: typeof AuthRoute
   BrandNewRoute: typeof BrandNewRoute
+  CartRoute: typeof CartRoute
   PreOwnedRoute: typeof PreOwnedRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  ProductSlugRoute: typeof ProductSlugRoute
   ApiPublicProductImageIdRoute: typeof ApiPublicProductImageIdRoute
 }
 
@@ -151,6 +177,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrandNewRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pre-owned': {
       id: '/pre-owned'
       path: '/pre-owned'
@@ -163,6 +196,13 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/product/$slug': {
+      id: '/product/$slug'
+      path: '/product/$slug'
+      fullPath: '/product/$slug'
+      preLoaderRoute: typeof ProductSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/product-image/$id': {
@@ -180,8 +220,10 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   AuthRoute: AuthRoute,
   BrandNewRoute: BrandNewRoute,
+  CartRoute: CartRoute,
   PreOwnedRoute: PreOwnedRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  ProductSlugRoute: ProductSlugRoute,
   ApiPublicProductImageIdRoute: ApiPublicProductImageIdRoute,
 }
 export const routeTree = rootRouteImport
