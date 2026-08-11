@@ -5,8 +5,8 @@ export type CatalogEntry = { images: string[]; colors: ColorOption[]; storage: s
 export const CATALOG: Record<string, CatalogEntry> = {
   "iPhone X": {
     "images": [
-      "/__l5e/assets-v1/dd7a6455-3b37-4597-b455-29f07a1df86b/xsmax.jpg",
-      "/__l5e/assets-v1/7688415a-d7d3-4f51-b2ba-26ae3da02403/xsmax2.jpg"
+      "/images/xsmax.jpg",
+      "/images/xsmax2.jpg"
     ],
     "colors": [
       {
@@ -26,10 +26,10 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone XR": {
     "images": [
-      "/__l5e/assets-v1/864eff7f-0f1d-4492-b1d8-47a52a108d9c/xr.jpg",
-      "/__l5e/assets-v1/c4430c6d-f404-4f54-aa0b-ce4dfa4b8d83/xr2.jpg",
-      "/__l5e/assets-v1/e1b70725-be3c-47ff-8bec-43dafe598a54/xrblue.jpg",
-      "/__l5e/assets-v1/1b4da14c-d752-4964-8170-e92bfdd599c0/xrblue2.jpg"
+      "/images/xr.jpg",
+      "/images/xr2.jpg",
+      "/images/xrblue.jpg",
+      "/images/xrblue2.jpg"
     ],
     "colors": [
       {
@@ -65,10 +65,10 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone XS Max": {
     "images": [
-      "/__l5e/assets-v1/dd7a6455-3b37-4597-b455-29f07a1df86b/xsmax.jpg",
-      "/__l5e/assets-v1/7688415a-d7d3-4f51-b2ba-26ae3da02403/xsmax2.jpg",
-      "/__l5e/assets-v1/d7042c18-1466-46b2-a068-2565f33df47b/xsmaxwhite.jpg",
-      "/__l5e/assets-v1/fc1f5ad1-7412-4fb3-a098-557f30034293/xsmaxwhite2.jpg"
+      "/images/xsmax.jpg",
+      "/images/xsmax2.jpg",
+      "/images/xsmaxwhite.jpg",
+      "/images/xsmaxwhite2.jpg"
     ],
     "colors": [
       {
@@ -93,8 +93,8 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 11": {
     "images": [
-      "/__l5e/assets-v1/a5ce6eca-0f28-49b3-a652-03c56b0944d1/Iphone11.jpg",
-      "/__l5e/assets-v1/e813ff20-f7a5-497b-b9bf-920834957780/iphone112.jpg"
+      "/images/Iphone11.jpg",
+      "/images/iphone112.jpg"
     ],
     "colors": [
       {
@@ -131,8 +131,8 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 11 Pro": {
     "images": [
-      "/__l5e/assets-v1/ed689c62-e002-46a4-93b1-345c20a34d61/11promax.jpg",
-      "/__l5e/assets-v1/94f9c454-05c9-4b1d-8d3f-aa9b9eae9245/11promax2.jpg"
+      "/images/11promax.jpg",
+      "/images/11promax2.jpg"
     ],
     "colors": [
       {
@@ -160,10 +160,10 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 11 Pro Max": {
     "images": [
-      "/__l5e/assets-v1/ed689c62-e002-46a4-93b1-345c20a34d61/11promax.jpg",
-      "/__l5e/assets-v1/94f9c454-05c9-4b1d-8d3f-aa9b9eae9245/11promax2.jpg",
-      "/__l5e/assets-v1/4029decd-c0dd-4410-83cf-28eb2e918846/11PROMAX3.jpg",
-      "/__l5e/assets-v1/ea630a27-791b-45c5-98fd-2453086ef488/11PROMAX4.jpg"
+      "/images/11promax.jpg",
+      "/images/11promax2.jpg",
+      "/images/11PROMAX3.jpg",
+      "/images/11PROMAX4.jpg"
     ],
     "colors": [
       {
@@ -191,9 +191,9 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 12": {
     "images": [
-      "/__l5e/assets-v1/a8d8076a-b371-4524-9e38-9e524638a0db/12white.jpg",
-      "/__l5e/assets-v1/34f69501-b52b-4094-8700-7aa0c1985522/12_2.jpg",
-      "/__l5e/assets-v1/3f549717-a278-4213-9f56-caeedf50936f/12.jpg"
+      "/images/12white.jpg",
+      "/images/12_2.jpg",
+      "/images/12.jpg"
     ],
     "colors": [
       {
@@ -230,10 +230,10 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 12 Pro": {
     "images": [
-      "/__l5e/assets-v1/2dd60b15-e131-44e6-9921-fd92f75d259c/12pro.jpg",
-      "/__l5e/assets-v1/569de6d1-d3dc-4bfb-9808-4925dc7a729f/12pro2.jpg",
-      "/__l5e/assets-v1/db3bad64-7f27-4493-bec2-8e6c45984872/12propro.jpg",
-      "/__l5e/assets-v1/5f976ed5-c48e-4ee7-a647-ab0407924066/12prprp.jpg"
+      "/images/12pro.jpg",
+      "/images/12pro2.jpg",
+      "/images/12propro.jpg",
+      "/images/12prprp.jpg"
     ],
     "colors": [
       {
@@ -262,9 +262,9 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 12 Pro Max": {
     "images": [
-      "/__l5e/assets-v1/db3bad64-7f27-4493-bec2-8e6c45984872/12propro.jpg",
-      "/__l5e/assets-v1/5f976ed5-c48e-4ee7-a647-ab0407924066/12prprp.jpg",
-      "/__l5e/assets-v1/2dd60b15-e131-44e6-9921-fd92f75d259c/12pro.jpg"
+      "/images/12propro.jpg",
+      "/images/12prprp.jpg",
+      "/images/12pro.jpg"
     ],
     "colors": [
       {
@@ -293,10 +293,10 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 13": {
     "images": [
-      "/__l5e/assets-v1/6d77000e-f699-47e3-926c-3b2d682ee935/13.jpg",
-      "/__l5e/assets-v1/91d48a5b-824d-4dd0-80ab-36f97dfc926b/13_2.jpg",
-      "/__l5e/assets-v1/73ddf979-b8dc-468d-8930-495f254baf20/13RED.jpg",
-      "/__l5e/assets-v1/0f2e7dc2-4141-49aa-971e-07b807512866/13RED2.jpg"
+      "/images/13.jpg",
+      "/images/13_2.jpg",
+      "/images/13RED.jpg",
+      "/images/13RED2.jpg"
     ],
     "colors": [
       {
@@ -333,8 +333,8 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 13 Pro Max": {
     "images": [
-      "/__l5e/assets-v1/2d523590-37c7-4beb-a131-43f43786390b/13P.jpg",
-      "/__l5e/assets-v1/2ac029bf-df1f-44e3-99de-4f0a056d1490/13P2.jpg"
+      "/images/13P.jpg",
+      "/images/13P2.jpg"
     ],
     "colors": [
       {
@@ -367,8 +367,8 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 14": {
     "images": [
-      "/__l5e/assets-v1/e4d7573d-4f8a-4f73-885a-bc3cece0abc1/14.jpg",
-      "/__l5e/assets-v1/d46d4cdd-b54a-4569-b6a1-50977f70f28e/13W.jpg"
+      "/images/14.jpg",
+      "/images/13W.jpg"
     ],
     "colors": [
       {
@@ -405,8 +405,8 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 14 Pro": {
     "images": [
-      "/__l5e/assets-v1/9ee585eb-c613-4e84-9208-f6bc0c337719/14PROMAX.jpg",
-      "/__l5e/assets-v1/62713d85-1d88-4ea5-ab04-9af26ae2ee24/1414.jpg"
+      "/images/14PROMAX.jpg",
+      "/images/1414.jpg"
     ],
     "colors": [
       {
@@ -435,9 +435,9 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 14 Pro Max": {
     "images": [
-      "/__l5e/assets-v1/9ee585eb-c613-4e84-9208-f6bc0c337719/14PROMAX.jpg",
-      "/__l5e/assets-v1/9d6b07c4-f2ea-41be-96c9-6daa83fc7234/14PROMAX2.jpg",
-      "/__l5e/assets-v1/62713d85-1d88-4ea5-ab04-9af26ae2ee24/1414.jpg"
+      "/images/14PROMAX.jpg",
+      "/images/14PROMAX2.jpg",
+      "/images/1414.jpg"
     ],
     "colors": [
       {
@@ -466,8 +466,8 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 15": {
     "images": [
-      "/__l5e/assets-v1/68300039-b401-4fd4-b3a6-f49304f250f4/15.jpg",
-      "/__l5e/assets-v1/4afd7ba9-5e13-440e-bc86-04a23dfde0e2/15_2.jpg"
+      "/images/15.jpg",
+      "/images/15_2.jpg"
     ],
     "colors": [
       {
@@ -500,8 +500,8 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 15 Pro": {
     "images": [
-      "/__l5e/assets-v1/029859a0-b01c-4851-85e5-6c2eedbead4b/15pro.jpg",
-      "/__l5e/assets-v1/ac802da3-5cce-4bab-8f7f-44c41069bc3f/15pro2.jpg"
+      "/images/15pro.jpg",
+      "/images/15pro2.jpg"
     ],
     "colors": [
       {
@@ -530,8 +530,8 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 15 Pro Max": {
     "images": [
-      "/__l5e/assets-v1/029859a0-b01c-4851-85e5-6c2eedbead4b/15pro.jpg",
-      "/__l5e/assets-v1/ac802da3-5cce-4bab-8f7f-44c41069bc3f/15pro2.jpg"
+      "/images/15pro.jpg",
+      "/images/15pro2.jpg"
     ],
     "colors": [
       {
@@ -560,9 +560,9 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 16": {
     "images": [
-      "/__l5e/assets-v1/c0c46475-a72b-488a-b81a-c97e96db1431/16.jpg",
-      "/__l5e/assets-v1/64fab5a6-efdc-44a1-9a00-e06f39519061/16.2.jpg",
-      "/__l5e/assets-v1/4c456f0a-3033-4a90-af82-8619072ff0b4/16.3.jpg"
+      "/images/16.jpg",
+      "/images/16.2.jpg",
+      "/images/16.3.jpg"
     ],
     "colors": [
       {
@@ -595,10 +595,10 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 16 Pro": {
     "images": [
-      "/__l5e/assets-v1/6aafd56f-5a32-4f82-b9bf-6c0ca40f2749/16pro.jpg",
-      "/__l5e/assets-v1/13529d64-66a4-45a4-bd48-57a50ee10e8b/16pro2.jpg",
-      "/__l5e/assets-v1/85c8abfe-ab2d-41e4-8d2a-1e3c8629b3eb/1616.jpg",
-      "/__l5e/assets-v1/beaaa5ae-fde4-4a2f-b21b-0ba0cd8232dd/166666.jpg"
+      "/images/16pro.jpg",
+      "/images/16pro2.jpg",
+      "/images/1616.jpg",
+      "/images/166666.jpg"
     ],
     "colors": [
       {
@@ -627,8 +627,8 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 16 Pro Max": {
     "images": [
-      "/__l5e/assets-v1/33f6f065-e845-4728-9cdd-1e7a8f94f284/16PROMAX.jpg",
-      "/__l5e/assets-v1/23f5a87f-45cd-48d1-b7b5-2d320adb32c1/16PROMAXX.jpg"
+      "/images/16PROMAX.jpg",
+      "/images/16PROMAXX.jpg"
     ],
     "colors": [
       {
@@ -657,8 +657,8 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 17": {
     "images": [
-      "/__l5e/assets-v1/fce502d8-5196-492f-9571-ce5322535362/AIR.jpg",
-      "/__l5e/assets-v1/1a11a639-4720-4f92-a1a4-081e29e61ded/AIRR.jpg"
+      "/images/AIR.jpg",
+      "/images/AIRR.jpg"
     ],
     "colors": [
       {
@@ -690,8 +690,8 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 17 Pro": {
     "images": [
-      "/__l5e/assets-v1/22a6321c-cdb8-49d7-8b1c-48a64f6acd5b/17PRO.jpg",
-      "/__l5e/assets-v1/479f7ebd-d592-44da-a6c9-222849b2d084/17PROII.jpg"
+      "/images/17PRO.jpg",
+      "/images/17PROII.jpg"
     ],
     "colors": [
       {
@@ -716,8 +716,8 @@ export const CATALOG: Record<string, CatalogEntry> = {
   },
   "iPhone 17 Pro Max": {
     "images": [
-      "/__l5e/assets-v1/479f7ebd-d592-44da-a6c9-222849b2d084/17PROII.jpg",
-      "/__l5e/assets-v1/22a6321c-cdb8-49d7-8b1c-48a64f6acd5b/17PRO.jpg"
+      "/images/17PROII.jpg",
+      "/images/17PRO.jpg"
     ],
     "colors": [
       {
