@@ -2,7 +2,6 @@ import { useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import logo from "@/assets/gadgetzone-logo.jpeg";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -66,7 +65,7 @@ function AuthPage() {
     <div className="flex min-h-screen items-center justify-center bg-secondary px-5 py-16">
       <div className="w-full max-w-md rounded-3xl border border-border bg-card p-8 shadow-float">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="Gadget Zone ZA logo" width={40} height={40} className="h-10 w-10 rounded-full object-cover" />
+          <img src="/images/gadgetzone-logo.jpeg" alt="Gadget Zone ZA logo" width={40} height={40} className="h-10 w-10 rounded-full object-cover" />
           <span className="font-display text-base font-bold">
             GADGET <span className="text-brand">ZONE</span> ZA
           </span>

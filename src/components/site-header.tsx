@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { ShoppingBag } from "lucide-react";
-import logo from "@/assets/gadgetzone-logo.jpeg";
 import { useCart } from "@/lib/cart";
 
 export function SiteHeader() {
@@ -10,7 +9,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="Gadget Zone ZA logo" width={40} height={40} className="h-10 w-10 rounded-full object-cover" />
+          <img src="/images/gadgetzone-logo.jpeg" alt="Gadget Zone ZA logo" width={40} height={40} className="h-10 w-10 rounded-full object-cover" />
           <span className="font-display text-base font-bold tracking-tight sm:text-lg">
             GADGET <span className="text-brand">ZONE</span> ZA
           </span>
