@@ -101,10 +101,85 @@ function AdminPage() {
       </header>
 
       <main className="mx-auto max-w-5xl space-y-4 px-5 py-10">
+        <OrdersPanel />
         {(products ?? []).map((product) => (
           <AdminRow key={product.id} product={product} onChange={refresh} />
         ))}
       </main>
+    </div>
+  );
+}
+
+type OrderRow = {
+  id: string;
+  customer_name: string;
+  phone: string;
+  email: string | null;
+  address: string;
+  notes: string | null;
+  items: unknown;
+  total_zar: number;
+  status: string;
+  created_at: string;
+};
+
+function OrdersPanel() {
+  const { data: orders, isLoading } = useQuery({
+    queryKey: ["orders"],
+    queryFn: async () => {
+      const { data, error } = await supabase.from("orders").select("*").order("created_at", { ascending: false });
+      if (error) throw error;
+      return data as OrderRow[];
+    },
+  });
+
+  const list = orders ?? [];
+  const revenue = list.reduce((n, o) => n + (o.total_zar ?? 0), 0);
+  const now = Date.now();
+  const last30 = list.filter((o) => now - new Date(o.created_at).getTime() < 30 * 864e5).length;
+
+  return (
+    <section className="rounded-2xl border border-border bg-background p-6">
+      <h2 className="text-lg font-bold">Orders</h2>
+      <div className="mt-4 grid grid-cols-3 gap-3">
+        <Stat label="Total orders" value={isLoading ? "…" : String(list.length)} />
+        <Stat label="Last 30 days" value={isLoading ? "…" : String(last30)} />
+        <Stat label="Order value" value={isLoading ? "…" : formatRand(revenue)} />
+      </div>
+
+      <div className="mt-5 space-y-3">
+        {list.slice(0, 20).map((o) => (
+          <div key={o.id} className="rounded-xl border border-border p-4 text-sm">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="font-semibold">{o.customer_name}</span>
+              <span className="text-xs text-muted-foreground">{new Date(o.created_at).toLocaleString("en-ZA")}</span>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              {o.phone}
+              {o.email ? ` · ${o.email}` : ""}
+            </p>
+            <p className="mt-1 text-xs text-muted-foreground">{o.address}</p>
+            <ul className="mt-2 space-y-0.5 text-xs">
+              {(Array.isArray(o.items) ? (o.items as Array<Record<string, unknown>>) : []).map((it, idx) => (
+                <li key={idx}>
+                  {String(it['qty'])} × {String(it['model'])} — {String(it['storage'])}, {String(it['color'])}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-2 font-semibold">{formatRand(o.total_zar)}</p>
+          </div>
+        ))}
+        {!isLoading && list.length === 0 && <p className="text-sm text-muted-foreground">No orders yet.</p>}
+      </div>
+    </section>
+  );
+}
+
+function Stat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-xl bg-secondary p-4">
+      <p className="text-xs uppercase tracking-widest text-muted-foreground">{label}</p>
+      <p className="mt-1 text-xl font-bold">{value}</p>
     </div>
   );
 }
