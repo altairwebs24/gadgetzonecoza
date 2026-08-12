@@ -102,11 +102,127 @@ function AdminPage() {
 
       <main className="mx-auto max-w-5xl space-y-4 px-5 py-10">
         <OrdersPanel />
+        <AddProductPanel onChange={refresh} />
         {(products ?? []).map((product) => (
           <AdminRow key={product.id} product={product} onChange={refresh} />
         ))}
       </main>
     </div>
+  );
+}
+
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function AddProductPanel({ onChange }: { onChange: () => void }) {
+  const [model, setModel] = useState("");
+  const [condition, setCondition] = useState<"new" | "preowned">("new");
+  const [price, setPrice] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  async function addProduct() {
+    if (!model.trim() || !price) {
+      toast.error("Model and price are required");
+      return;
+    }
+    setBusy(true);
+    const slug = `${slugify(model)}-${condition}`;
+    const { data: inserted, error } = await supabase
+      .from("products")
+      .insert({
+        model: model.trim(),
+        condition,
+        price_zar: Number(price),
+        slug,
+        sort_order: 999,
+      })
+      .select("id")
+      .single();
+
+    if (error || !inserted) {
+      setBusy(false);
+      toast.error(error?.message ?? "Could not add product");
+      return;
+    }
+
+    if (file) {
+      const path = `${inserted.id}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.\-_]/g, "")}`;
+      const { error: uploadError } = await supabase.storage
+        .from("product-images")
+        .upload(path, file, { upsert: true, contentType: file.type });
+      if (uploadError) {
+        setBusy(false);
+        toast.error(uploadError.message);
+        return;
+      }
+      await supabase.from("products").update({ image_path: path }).eq("id", inserted.id);
+    }
+
+    setBusy(false);
+    setModel("");
+    setPrice("");
+    setFile(null);
+    toast.success("Product added");
+    onChange();
+  }
+
+  return (
+    <section className="rounded-2xl border border-border bg-background p-6">
+      <h2 className="text-lg font-bold">Add a product</h2>
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        <label className="text-sm">
+          <span className="mb-1 block text-xs uppercase tracking-widest text-muted-foreground">Model</span>
+          <input
+            value={model}
+            onChange={(e) => setModel(e.target.value)}
+            placeholder="iPhone 15 Pro"
+            className="h-11 w-full rounded-xl border border-border bg-secondary px-3 text-sm outline-none focus:border-brand"
+          />
+        </label>
+        <label className="text-sm">
+          <span className="mb-1 block text-xs uppercase tracking-widest text-muted-foreground">Price (ZAR)</span>
+          <input
+            type="number"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            placeholder="12000"
+            className="h-11 w-full rounded-xl border border-border bg-secondary px-3 text-sm outline-none focus:border-brand"
+          />
+        </label>
+        <label className="text-sm">
+          <span className="mb-1 block text-xs uppercase tracking-widest text-muted-foreground">Condition</span>
+          <select
+            value={condition}
+            onChange={(e) => setCondition(e.target.value as "new" | "preowned")}
+            className="h-11 w-full rounded-xl border border-border bg-secondary px-3 text-sm outline-none focus:border-brand"
+          >
+            <option value="new">Brand new</option>
+            <option value="preowned">Pre-owned</option>
+          </select>
+        </label>
+        <label className="text-sm">
+          <span className="mb-1 block text-xs uppercase tracking-widest text-muted-foreground">Photo</span>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+            className="h-11 w-full rounded-xl border border-border bg-secondary px-3 py-2 text-xs"
+          />
+        </label>
+      </div>
+      <button
+        onClick={addProduct}
+        disabled={busy}
+        className="mt-4 h-11 rounded-xl bg-brand px-6 text-sm font-semibold text-primary-foreground disabled:opacity-60"
+      >
+        {busy ? "Adding…" : "Add product"}
+      </button>
+    </section>
   );
 }
 
