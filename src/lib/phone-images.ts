@@ -10,6 +10,7 @@ export type Product = {
   price_zar: number;
   image_key: string;
   image_path: string | null;
+  image_data_url?: string | null;
   sort_order: number;
   updated_at: string;
 };
@@ -31,6 +32,9 @@ const PLACEHOLDER =
 /** Gallery of photos for a product: admin upload first (if any), then catalog photos. */
 export function productImages(product: Product): string[] {
   const shots = catalogEntry(product.model).images;
+  if (product.image_data_url) {
+    return [product.image_data_url, ...shots];
+  }
   if (product.image_path) {
     return [
       `/api/public/product-image/${product.id}?v=${encodeURIComponent(product.updated_at)}`,

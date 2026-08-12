@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
 import { formatRand, productImage, type Product } from "@/lib/phone-images";
+import { fileToDataUrl } from "@/lib/image-upload";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -151,16 +152,18 @@ function AddProductPanel({ onChange }: { onChange: () => void }) {
     }
 
     if (file) {
-      const path = `${inserted.id}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.\-_]/g, "")}`;
-      const { error: uploadError } = await supabase.storage
-        .from("product-images")
-        .upload(path, file, { upsert: true, contentType: file.type });
-      if (uploadError) {
+      try {
+        const dataUrl = await fileToDataUrl(file);
+        const { error: imageError } = await supabase
+          .from("products")
+          .update({ image_data_url: dataUrl })
+          .eq("id", inserted.id);
+        if (imageError) throw new Error(imageError.message);
+      } catch (err) {
         setBusy(false);
-        toast.error(uploadError.message);
+        toast.error(err instanceof Error ? err.message : "Could not upload the photo");
         return;
       }
-      await supabase.from("products").update({ image_path: path }).eq("id", inserted.id);
     }
 
     setBusy(false);
@@ -328,16 +331,18 @@ function AdminRow({ product, onChange }: { product: Product; onChange: () => voi
 
   async function uploadImage(file: File) {
     setBusy(true);
-    const path = `${product.id}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.\-_]/g, "")}`;
-    const { error: uploadError } = await supabase.storage
-      .from("product-images")
-      .upload(path, file, { upsert: true, contentType: file.type });
-    if (uploadError) {
+    let dataUrl: string;
+    try {
+      dataUrl = await fileToDataUrl(file);
+    } catch (err) {
       setBusy(false);
-      toast.error(uploadError.message);
+      toast.error(err instanceof Error ? err.message : "Could not read that image");
       return;
     }
-    const { error } = await supabase.from("products").update({ image_path: path }).eq("id", product.id);
+    const { error } = await supabase
+      .from("products")
+      .update({ image_data_url: dataUrl })
+      .eq("id", product.id);
     setBusy(false);
     if (error) toast.error(error.message);
     else {
@@ -350,7 +355,7 @@ function AdminRow({ product, onChange }: { product: Product; onChange: () => voi
     setBusy(true);
     const { error } = await supabase
       .from("products")
-      .update({ image_key: key, image_path: null })
+      .update({ image_key: key, image_path: null, image_data_url: null })
       .eq("id", product.id);
     setBusy(false);
     if (error) toast.error(error.message);
@@ -392,7 +397,7 @@ function AdminRow({ product, onChange }: { product: Product; onChange: () => voi
           Save
         </button>
       </div>
-      {product.image_path && (
+      {(product.image_path || product.image_data_url) && (
         <button
           onClick={() => setImageKey(product.image_key)}
           disabled={busy}
