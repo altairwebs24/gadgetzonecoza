@@ -70,6 +70,7 @@ export type Database = {
           condition: string
           created_at: string
           id: string
+          image_data_url: string | null
           image_key: string
           image_path: string | null
           model: string
@@ -82,6 +83,7 @@ export type Database = {
           condition: string
           created_at?: string
           id?: string
+          image_data_url?: string | null
           image_key?: string
           image_path?: string | null
           model: string
@@ -94,6 +96,7 @@ export type Database = {
           condition?: string
           created_at?: string
           id?: string
+          image_data_url?: string | null
           image_key?: string
           image_path?: string | null
           model?: string
